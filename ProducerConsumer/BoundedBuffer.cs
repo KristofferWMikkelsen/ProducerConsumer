@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProducerConsumer
@@ -19,25 +20,43 @@ namespace ProducerConsumer
 
         public bool isFull()
         {
-            return true;
+            if (this._queue.Count >= this._cap)
+            {
+                return true;
+            }
+            return false;
         }
 
         
 
         public void Put(int element)
         {
-            this._queue.Enqueue(element);
+            lock (_queue)
+            {
+                while (this.isFull())
+                {
+                    Monitor.Wait(_queue);
+                }
+                this._queue.Enqueue(element);
+                Console.WriteLine("Element was added {0} to the buffer on the thread", element);
+                Monitor.PulseAll(_queue);
+            }
         }
 
         public int Take()
         {
-            while (this._queue.Count == 0)
+            lock (_queue)
             {
-                
-            }
+                while (this._queue.Count == 0)
+                {
+                    Monitor.Wait(_queue);
+                }
             
-            int temp = this._queue.Dequeue();
-            return temp;
+                int temp = this._queue.Dequeue();
+                Console.WriteLine("Element was just took removed {0} from the buffer", temp);
+                Monitor.PulseAll(_queue);
+                return temp;
+            }
             
         }
 
