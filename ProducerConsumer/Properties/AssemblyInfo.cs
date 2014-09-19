@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Producer-Consumer framework")]
+[assembly: AssemblyTitle("ProducerConsumer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Producer-Consumer framework")]
+[assembly: AssemblyProduct("ProducerConsumer")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("acd1bc00-0853-41da-8743-f94e0fa7627b")]
+[assembly: Guid("086d3747-281b-4028-925d-d750d3c3f6b9")]
 
 // Version information for an assembly consists of the following four values:
 //
