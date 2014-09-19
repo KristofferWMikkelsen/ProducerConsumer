@@ -7,16 +7,16 @@ namespace ProducerConsumer
     class BoundedBuffer
     {
 
-        public Queue<int> MyQueue = new Queue<int>();
+        public Queue<int> Queue = new Queue<int>();
         public int Max = 0;
         public BoundedBuffer(int i)
         {
             Max = i;
         }
 
-        public bool IsFull()
+        public bool Full()
         {
-            if (Max == MyQueue.Count)
+            if (Max == Queue.Count)
             {
                 return true;
             }
@@ -25,12 +25,12 @@ namespace ProducerConsumer
 
         public void Put(int number)
         {
-            MyQueue.Enqueue(number);
+            Queue.Enqueue(number);
         }
 
-        public int Take()
+        public int Get()
         {
-            return MyQueue.Dequeue();
+            return Queue.Dequeue();
         }
 
 
