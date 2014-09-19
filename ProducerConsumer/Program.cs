@@ -9,7 +9,7 @@ namespace ProducerConsumer
             var buf = new BoundedBuffer(4);
 
             var prod = new Producer(buf, 10);
-            var con = new Consumer(buf);
+            var con = new Consumer(buf, 10);
 
             Parallel.Invoke(prod.Run, con.Run);
         }
