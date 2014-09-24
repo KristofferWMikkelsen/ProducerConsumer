@@ -7,19 +7,26 @@ namespace ProducerConsumer
     {
         private int max;
         private BoundedBuffer _buffer;
-        public Consumer(BoundedBuffer buffer, int expectedAmount)
+        public Consumer(BoundedBuffer buffer)
         {
             this._buffer = buffer;
-            this.max = expectedAmount;
+            //this.max = expectedAmount;
         }
 
         public void Run()
         {
-            for (int i = 0; i < this.max  ; i++)
-            {
-                int temp = this._buffer.Take();
+            //for (int i = 0; i < this.max  ; i++)
+            //{
+            //    int temp = this._buffer.Take();
                 
-            }
+            //}
+
+            int temp;
+            do
+            {
+                temp = this._buffer.Take();
+                
+            } while (temp !=-1);
         }
     }
 }

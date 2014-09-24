@@ -12,6 +12,7 @@ namespace ProducerConsumer
 
         private int _cap;
         private Queue<int> _queue;
+        public bool _hastLastElement = false;
         public BoundedBuffer(int capacity)
         {
             this._cap = capacity;
@@ -45,15 +46,33 @@ namespace ProducerConsumer
 
         public int Take()
         {
+           
             lock (_queue)
             {
+                if (_hastLastElement)
+                {
+                    return -1;
+                }
                 while (this._queue.Count == 0)
                 {
                     Monitor.Wait(_queue);
+
+                    if (_hastLastElement)
+                    {
+                        return -1;
+                    }
                 }
             
                 int temp = this._queue.Dequeue();
-                Console.WriteLine("Element was just took removed {0} from the buffer", temp);
+                //if (temp == -1)
+                //{
+                //    _queue.Enqueue(temp);
+                //}
+                if (temp ==-1)
+                {
+                    _hastLastElement = true;
+                }
+                Console.WriteLine("Element was just removed {0} from the buffer", temp);
                 Monitor.PulseAll(_queue);
                 return temp;
             }

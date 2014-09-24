@@ -25,6 +25,8 @@ namespace ProducerConsumer
                     this._buffer.Put(i);
                     
             }
+
+            this._buffer.Put(-1);
         }
     }
 }

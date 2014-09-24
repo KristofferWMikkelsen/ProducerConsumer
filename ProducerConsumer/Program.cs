@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace ProducerConsumer
 {
@@ -9,9 +10,12 @@ namespace ProducerConsumer
             var buf = new BoundedBuffer(4);
 
             var prod = new Producer(buf, 10);
-            var con = new Consumer(buf,10);
+            var con1 = new Consumer(buf);
+            var con2 = new Consumer(buf);
 
-            Parallel.Invoke(prod.Run, con.Run);
+            Parallel.Invoke(prod.Run, con1.Run, con2.Run);
+
+            Console.WriteLine("");
         }
     }
 }
